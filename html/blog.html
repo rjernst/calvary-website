@@ -1,0 +1,33 @@
+<!-- Created by rjernst with Vim 6 -->
+<html>
+
+<head>
+<script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
+
+</head>
+  <body>
+<h2>Add Article</h2>
+<form action="/data/blog/articles" method="post">
+  Title: <input type="text" name="title" /> <br/>
+  Body: <textarea name="body" cols="40" rows="5"></textarea> <br/>
+  Tags: <input type="text" name="tags" /> <br/>
+  <input type="submit" value="Post"/>
+</form>
+
+<div id="result"></div>
+
+<script>
+$('#result').append('<p>blah</p>');
+$.getJSON('/data/blog/articles', function(data) {
+  $('#result').html('');
+  var i;
+  for (i = 0; i < data.length; i++) {
+    var a = data[i];
+    $('#result').append('<p>' + a.title + '</p>');
+  }
+});
+
+</script>
+    
+  </body>
+</html>

@@ -1,0 +1,88 @@
+
+/* reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  border:0 none;
+  font-family:inherit;
+  font-size:14px;
+  font-style:inherit;
+  font-weight:inherit;
+  margin:0;
+  outline:0 none;
+  padding:0;
+  vertical-align:baseline;
+}
+
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+
+body {
+  font: 62.5%/1em "Lucida Grande",Lucida,Verdana,sans-serif
+}
+
+#wrap {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0px;
+
+  /* debug */
+  border: 1px solid red;
+}
+
+#header {
+  width: 900px;
+  height: 152px;
+  position: relative;
+}
+
+#search {
+  float: right;
+}
+
+/* table based nav */
+#nav {
+  width: 900px;
+  bottom: 0;
+  height: 30px;
+  margin-bottom: 15px;
+  position: absolute;
+  border-collapse: collapse;
+}
+#nav td {
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid black;
+}
+
+#content {
+  margin: 5px;
+}
+
+#footer {
+  height: 40px;
+
+  /* debug */
+  border: 1px solid blue;
+}
+
+#contact {
+  float: right;
+}
+
+#contact td {
+  padding: 5px;
+  font-size: 75%;
+  vertical-align: center;
+}
+

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+                      "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>Calvary Lutheran {{ site|capfirst }} - {% block title %}Template{% endblock %}</title>
+
+<link rel="stylesheet" type="text/css" href="/css/base.css" />
+
+<script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
+
+<!-- jcarousel -->
+<script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/jcarousel.css" />
+
+{% block head %}{% endblock %}
+
+</head>
+
+<!--
+Generated at {% now "jS F Y H:i" %}
+
+Template takes the following args:
+site - {{ site }}
+page - {{ page }}
+links - The links for this site
+-->
+
+<body>
+<div id="wrap" >
+
+  <div id="header">
+
+    <div id="search">
+      <form action="/search" method="post">
+        <input type="text" maxLength="40"/>
+        <input type="submit" value="Search"/>
+      </form>
+    </div>
+
+    <div id="logo"></div>
+
+    <div id="cross_site">
+      <span>Visit our
+      {% ifequal site "school" %}
+        <a href="/church">Church site</a>
+      {% else %}
+        <a href="/school">School site</a>
+      {% endifequal %}
+      </span>
+    </div>
+
+    <table id="nav"><tr>
+    {% for link in links %}
+      <td id="nav_{{ link.name|lower }}"
+          {% ifequal link.url page %}class="active"{% endifequal %}>
+<!-- TODO: page is not correct to compare for active link -->
+        <span><a href="{{ link.url }}">{{ link.name|upper }}</a></span>
+      </td>
+    {% endfor %}
+    </tr></table>
+
+  </div><!-- header -->
+
+
+<div id="content">
+{% block content %}{% endblock %}
+</div>
+
+<div id="footer">
+
+  <table id="contact"><tr>
+    <td>webmaster@calvaryslz.org</td>
+    <td>#510.278.2598</td>
+    <td>17200 Via Magdalena</td>
+    <td>San Lorenzo, CA 94580</td>
+  </tr></table>
+
+  <table id="powered_by"><tr>
+    <td><img src="http://code.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" id="gae_logo" /></td>
+    <td><img src="/media/fish.png" id="fish_logo" /></td>
+  </tr></table>
+
+</div>
+
+</body>
+</html>
