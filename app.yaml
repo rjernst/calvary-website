@@ -1,0 +1,35 @@
+application: calvary
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
+
+- url: /blog-test
+  static_files: html/blog.html
+  upload: html/blog.html
+
+- url: /school.*
+  script: school/urls.py
+
+- url: /church.*
+  script: church/urls.py
+
+- url: /data/.*
+  script: plugins/urls.py
+
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+- url: /media
+  static_dir: media
+
+- url: /
+  static_files: templates/home.html
+  upload: templates/home.html
