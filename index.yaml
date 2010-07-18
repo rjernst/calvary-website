@@ -15,3 +15,9 @@ indexes:
   - name: tags
   - name: created
     direction: desc
+
+- kind: UsedNonce
+  properties:
+  - name: salt
+  - name: server_url
+  - name: timestamp

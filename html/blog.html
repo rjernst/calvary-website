@@ -14,17 +14,32 @@
   <input type="submit" value="Post"/>
 </form>
 
-<div id="result"></div>
+<table id="result"></table>
 
 <script>
-$('#result').append('<p>blah</p>');
+function delete_article(id) {
+    alert('deleting article ' + id);
+    $.ajax({
+        url: '/data/blog/articles?id=' + id,
+        type: 'DELETE',
+        success: function(data) {
+            $('#article-' + id).remove();
+        },
+    });
+}
+
 $.getJSON('/data/blog/articles', function(data) {
-  $('#result').html('');
+  var buf = '<tr><th>Title</th><th>Delete<th></tr>';
   var i;
   for (i = 0; i < data.length; i++) {
     var a = data[i];
-    $('#result').append('<p>' + a.title + '</p>');
+    row = '<tr id="article-' + a.id + '">';
+    row += '<td>' + a.title + '</td>';
+    row += '<td><a href="javascript:delete_article(' + a.id + ');">delete</a></td>';
+    row += '</tr>';
+    buf += row;
   }
+  $('#result').html(buf);
 });
 
 </script>
