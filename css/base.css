@@ -12,31 +12,21 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   vertical-align:baseline;
 }
 
-a:link {
-  text-decoration: none;
-}
-a:visited {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-a:active {
-  text-decoration: none;
-}
+a { font-weight:bold; }
+a:link { text-decoration: none; color:white; }
+a:visited { text-decoration: none; color:white;}
+a:hover { text-decoration: none; color:white;}
+a:active { text-decoration: none; color:white;}
 
 body {
-  font: 62.5%/1em "Lucida Grande",Lucida,Verdana,sans-serif
+  font: 62.5%/1em "Lucida Grande",Lucida,Verdana,sans-serif;
+  background-color: #FCF2E4;
 }
 
 #wrap {
   width: 900px;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px 0px;
-
-  /* debug */
-  border: 1px solid red;
 }
 
 #header {
@@ -49,21 +39,31 @@ body {
   float: right;
 }
 
-/* table based nav */
-#nav {
-  width: 900px;
-  bottom: 0;
-  height: 30px;
-  margin-bottom: 15px;
+/**************************
+ * login stuff
+ **************************/
+#login_bg {
+  background-color: #5E100C;
+  height: 20px;
+  float: both;
+}
+#login {
   position: absolute;
-  border-collapse: collapse;
+  top: -15px;
+  color: white;
+  right: 0px;
 }
-#nav td {
-  width: 100px;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid black;
+
+/***************************
+ * cross site nav
+ ***************************/
+#cross_site {
+  position: absolute;
+  right: 0px;
+  background-color: #5e100c;
 }
+#cross_site
+
 
 #content {
   margin: 5px;
@@ -85,4 +85,66 @@ body {
   font-size: 75%;
   vertical-align: center;
 }
+
+/* -------------------------------------------------- */
+/* navigation */
+/* -------------------------------------------------- */
+#globalnav {
+    clear:left;
+    float:left;
+    width:900px;
+    height:30px;
+    bottom:0px;
+    position: absolute;
+    background:#80C8FF url(globalnav.gif) 0 25% repeat;
+    border-bottom:1px solid #49A9FF;
+    overflow:hidden;
+}
+#globalnav ul {
+    clear:left;
+    float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+    text-align:center;
+}
+#globalnav ul li {
+    display:block;
+    float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    right:50%;
+    width:149px;
+}
+#globalnav ul li.first {
+    border-left:1px solid #49A9FF;
+}
+#globalnav ul li.last {
+    border-right:1px solid #99D8FF;
+}
+#globalnav ul li a {
+    display:block;
+    margin:0;
+    padding:.4em .8em;
+    color:#000;
+    text-decoration:none;
+    border-left:1px solid #99D8FF;
+    border-right:1px solid #49A9FF;
+    line-height:1.3em;
+}
+#globalnav ul li.active a {
+    background:url(globalnav.gif) 0 75% repeat;
+    font-weight:bold;
+}
+#globalnav ul li a:hover {
+    background:url(globalnav.gif) 0 75% repeat;
+}
+#globalnav ul li a span {
+    display:block;
+}
+
 

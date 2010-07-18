@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
                       "http://www.w3.org/TR/html4/strict.dtd">
 <html>
+{% spaceless %}
 <head>
 
 <title>Calvary Lutheran {{ site|capfirst }} - {% block title %}Template{% endblock %}</title>
@@ -27,38 +28,43 @@ links - The links for this site
 -->
 
 <body>
+<div id="login_bg"></div>
+
 <div id="wrap" >
 
   <div id="header">
 
+    <span id="login">Need to sign into the website? <a href="/auth/login">Login here</a></span>
+<!--
     <div id="search">
       <form action="/search" method="post">
         <input type="text" maxLength="40"/>
         <input type="submit" value="Search"/>
       </form>
     </div>
+-->
 
     <div id="logo"></div>
 
     <div id="cross_site">
-      <span>Visit our
+      <span>
       {% ifequal site "school" %}
-        <a href="/church">Church site</a>
+        <a href="/church">Visit Church website</a>
       {% else %}
-        <a href="/school">School site</a>
-      {% endifequal %}
+        <a href="/school">Visit School website</a>
+      {% endifequal %} 
+      | <a id="facebook_page" href="facebook"></a> 
+        <a id="twitter_page" href="twitter"></a>
       </span>
     </div>
 
-    <table id="nav"><tr>
+    <div id="globalnav"><ul>
     {% for link in links %}
-      <td id="nav_{{ link.name|lower }}"
-          {% ifequal link.url page %}class="active"{% endifequal %}>
-<!-- TODO: page is not correct to compare for active link -->
-        <span><a href="{{ link.url }}">{{ link.name|upper }}</a></span>
-      </td>
+      <li id="nav_{{ link.name|lower }}" class="{% if forloop.first %}first {% endif %}{% if forloop.last %}last {% endif %}{% ifequal link.url page %}active {% endifequal %}>">
+        <a href="{{ link.url }}">{{ link.name|upper }}</a>
+      </li>
     {% endfor %}
-    </tr></table>
+    </ul></div>
 
   </div><!-- header -->
 
@@ -84,4 +90,5 @@ links - The links for this site
 </div>
 
 </body>
+{% endspaceless %}
 </html>
