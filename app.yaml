@@ -5,9 +5,9 @@ api_version: 1
 
 handlers:
 - url: /_ah/login_required
-  script: auth/login.py
+  script: auth/openid.py
 
-- url: /auth
+- url: /openid
   static_dir: auth/resources
 
 - url: /robots.txt
@@ -15,8 +15,8 @@ handlers:
   upload: robots.txt
 
 - url: /blog-test
-  static_files: html/blog.html
-  upload: html/blog.html
+  static_files: templates/blog.html
+  upload: templates/blog.html
 
 - url: /school.*
   script: school/urls.py

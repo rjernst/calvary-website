@@ -9,7 +9,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   margin:0;
   outline:0 none;
   padding:0;
-  vertical-align:baseline;
+  vertical-align:center;
 }
 
 a { font-weight:bold; }
@@ -63,7 +63,6 @@ body {
   padding: 7px;
 }
 
-
 #content {
   margin: 5px;
 }
@@ -88,33 +87,34 @@ body {
 /* -------------------------------------------------- */
 /* navigation */
 /* -------------------------------------------------- */
-#globalnav { width: 900px; height: 38px; margin: 60px auto 10px; position: relative; z-index: 9998; }
+#globalnav { width: 100%; height: 38px; margin: 60px auto 10px; position: relative; }
 #globalnav li { display: inline; }
 #globalnav li a { float: left; width: 124px; height: 0; padding-top: 38px; overflow: hidden; }
-#globalnav li a,
-#globalnav ul { background-image: url(/media/globalnav.png); _background-image: url(/media/globalnav.png); background-repeat: no-repeat; }
+/*#globalnav li a,*/
+/*#globalnav ul { background-image: url(/media/globalnav.png); _background-image: url(/media/globalnav.png); background-repeat: no-repeat; }*/
 
 /* BUTTONS */
-#globalnav li#gn-home a { background-position: 0 0; }
+/*#globalnav li#gn-home a { background-position: 0 0; }
 #globalnav li#gn-about a { background-position: -128px 0; }
 #globalnav li#gn-admissions a { background-position: -257px 0; }
 #globalnav li#gn-classes a { background-position: -375px 0; }
 #globalnav li#gn-faculty a { background-position: -512px 0; }
 #globalnav li#gn-programs a { background-position: -640px 0; }
 #globalnav li#gn-parents a { background-position: -768px 0; }
+*/
 
 /* OVER STATES */
-#globalnav li#gn-home a:hover { background-position: 0 -38px; }
+/*#globalnav li#gn-home a:hover { background-position: 0 -38px; }
 #globalnav li#gn-about a:hover { background-position: -128px -38px; }
 #globalnav li#gn-admissions a:hover { background-position: -257px -38px; }
 #globalnav li#gn-classes a:hover { background-position: -375px -38px; }
 #globalnav li#gn-faculty a:hover { background-position: -512px -38px; }
 #globalnav li#gn-programs a:hover { background-position: -640px -38px; }
 #globalnav li#gn-parents a:hover { background-position: -768px -38px; }
+*/
 
 /* PRESSED STAT */
-/*
-#globalnav li#gn-home a:active { background-position: 0 -76px; }
+/*#globalnav li#gn-home a:active { background-position: 0 -76px; }
 #globalnav li#gn-about a:active { background-position: -128px -76px; }
 #globalnav li#gn-admissions a:active { background-position: -257px -76px; }
 #globalnav li#gn-classes a:active { background-position: -375px -76px; }
@@ -124,13 +124,14 @@ body {
 */
 
 /* ON STATES */
-#globalnav.home li#gn-home a:hover { background-position: 0 0; cursor: default; }
+/*#globalnav.home li#gn-home a:hover { background-position: 0 0; cursor: default; }
 #globalnav.about li#gn-about a { background-position: -128px -76px !important; }
 #globalnav.admissions li#gn-admissions a { background-position: -257px -76px !important; }
 #globalnav.classes li#gn-classes a { background-position: -375px -76px !important; }
 #globalnav.faculty li#gn-faculty a { background-position: -512px -76px !important; }
 #globalnav.programs li#gn-programs a { background-position: -640px -76px !important; }
 #globalnav.parents li#gn-parents a { background-position: -768px -76px !important; }
+*/
 
 
 

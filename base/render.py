@@ -26,9 +26,9 @@ def render(handler, file, args):
     args['page'] = page[1:]
 
     if file is None:
-        file = '../html/%s.%s.html' % (site, page)
+        file = '../templates/%s.%s.html' % (site, page)
         if not os.path.exists(file):
-            file = '../html/stub.html'
+            file = '../templates/stub.html'
     handler.response.out.write(template.render(file, args))
 
     
