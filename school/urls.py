@@ -7,6 +7,7 @@ from base.render import Link
 import school.home
 
 links = [
+    Link('/school', 'Home', school.home.HomeHandler),
     Link('/school/about', 'About', base.static.StaticHandler),
     Link('/school/admissions', 'Admissions', base.static.StaticHandler),
     Link('/school/classes', 'Classes', base.static.StaticHandler),
@@ -16,7 +17,7 @@ links = [
 ]
 
 _handlers = [(link.url, link.handler) for link in links]
-_handlers.append(('/school', school.home.HomeHandler))
+#_handlers.append(('/school', school.home.HomeHandler))
 _application = webapp.WSGIApplication(_handlers, debug=True)
 
 def main():

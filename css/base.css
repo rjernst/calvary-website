@@ -58,11 +58,10 @@ body {
  * cross site nav
  ***************************/
 #cross_site {
-  position: absolute;
-  right: 0px;
+  float: right;
   background-color: #5e100c;
+  padding: 7px;
 }
-#cross_site
 
 
 #content {
@@ -89,62 +88,49 @@ body {
 /* -------------------------------------------------- */
 /* navigation */
 /* -------------------------------------------------- */
-#globalnav {
-    clear:left;
-    float:left;
-    width:900px;
-    height:30px;
-    bottom:0px;
-    position: absolute;
-    background:#80C8FF url(globalnav.gif) 0 25% repeat;
-    border-bottom:1px solid #49A9FF;
-    overflow:hidden;
-}
-#globalnav ul {
-    clear:left;
-    float:left;
-    list-style:none;
-    margin:0;
-    padding:0;
-    position:relative;
-    left:50%;
-    text-align:center;
-}
-#globalnav ul li {
-    display:block;
-    float:left;
-    list-style:none;
-    margin:0;
-    padding:0;
-    position:relative;
-    right:50%;
-    width:149px;
-}
-#globalnav ul li.first {
-    border-left:1px solid #49A9FF;
-}
-#globalnav ul li.last {
-    border-right:1px solid #99D8FF;
-}
-#globalnav ul li a {
-    display:block;
-    margin:0;
-    padding:.4em .8em;
-    color:#000;
-    text-decoration:none;
-    border-left:1px solid #99D8FF;
-    border-right:1px solid #49A9FF;
-    line-height:1.3em;
-}
-#globalnav ul li.active a {
-    background:url(globalnav.gif) 0 75% repeat;
-    font-weight:bold;
-}
-#globalnav ul li a:hover {
-    background:url(globalnav.gif) 0 75% repeat;
-}
-#globalnav ul li a span {
-    display:block;
-}
+#globalnav { width: 900px; height: 38px; margin: 60px auto 10px; position: relative; z-index: 9998; }
+#globalnav li { display: inline; }
+#globalnav li a { float: left; width: 124px; height: 0; padding-top: 38px; overflow: hidden; }
+#globalnav li a,
+#globalnav ul { background-image: url(/media/globalnav.png); _background-image: url(/media/globalnav.png); background-repeat: no-repeat; }
+
+/* BUTTONS */
+#globalnav li#gn-home a { background-position: 0 0; }
+#globalnav li#gn-about a { background-position: -128px 0; }
+#globalnav li#gn-admissions a { background-position: -257px 0; }
+#globalnav li#gn-classes a { background-position: -375px 0; }
+#globalnav li#gn-faculty a { background-position: -512px 0; }
+#globalnav li#gn-programs a { background-position: -640px 0; }
+#globalnav li#gn-parents a { background-position: -768px 0; }
+
+/* OVER STATES */
+#globalnav li#gn-home a:hover { background-position: 0 -38px; }
+#globalnav li#gn-about a:hover { background-position: -128px -38px; }
+#globalnav li#gn-admissions a:hover { background-position: -257px -38px; }
+#globalnav li#gn-classes a:hover { background-position: -375px -38px; }
+#globalnav li#gn-faculty a:hover { background-position: -512px -38px; }
+#globalnav li#gn-programs a:hover { background-position: -640px -38px; }
+#globalnav li#gn-parents a:hover { background-position: -768px -38px; }
+
+/* PRESSED STAT */
+/*
+#globalnav li#gn-home a:active { background-position: 0 -76px; }
+#globalnav li#gn-about a:active { background-position: -128px -76px; }
+#globalnav li#gn-admissions a:active { background-position: -257px -76px; }
+#globalnav li#gn-classes a:active { background-position: -375px -76px; }
+#globalnav li#gn-faculty a:active { background-position: -512px -76px; }
+#globalnav li#gn-programs a:active { background-position: -640px -76px; }
+#globalnav li#gn-parents a:active { background-position: -768px -76px; }
+*/
+
+/* ON STATES */
+#globalnav.home li#gn-home a:hover { background-position: 0 0; cursor: default; }
+#globalnav.about li#gn-about a { background-position: -128px -76px !important; }
+#globalnav.admissions li#gn-admissions a { background-position: -257px -76px !important; }
+#globalnav.classes li#gn-classes a { background-position: -375px -76px !important; }
+#globalnav.faculty li#gn-faculty a { background-position: -512px -76px !important; }
+#globalnav.programs li#gn-programs a { background-position: -640px -76px !important; }
+#globalnav.parents li#gn-parents a { background-position: -768px -76px !important; }
+
 
 

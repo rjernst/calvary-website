@@ -22,8 +22,8 @@ def render(handler, file, args):
     req = _req_re.match(handler.request.path)
     site = req.group(1)
     args['site'] = site
-    page = req.group(2) or ''
-    args['page'] = page
+    page = req.group(2) or 'home'
+    args['page'] = page[1:]
 
     if file is None:
         file = '../html/%s.%s.html' % (site, page)

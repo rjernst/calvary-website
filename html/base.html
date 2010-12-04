@@ -35,16 +35,6 @@ links - The links for this site
   <div id="header">
 
     <span id="login">Need to sign into the website? <a href="/auth/login">Login here</a></span>
-<!--
-    <div id="search">
-      <form action="/search" method="post">
-        <input type="text" maxLength="40"/>
-        <input type="submit" value="Search"/>
-      </form>
-    </div>
--->
-
-    <div id="logo"></div>
 
     <div id="cross_site">
       <span>
@@ -53,16 +43,16 @@ links - The links for this site
       {% else %}
         <a href="/school">Visit School website</a>
       {% endifequal %} 
-      | <a id="facebook_page" href="facebook"></a> 
-        <a id="twitter_page" href="twitter"></a>
+      | <a id="facebook_page" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/media/facebook-icon.png"/></a> 
+        <a id="twitter_page" href="http://twitter.com/CalvarySLZ"><img src="/media/twitter-icon.png"/></a>
       </span>
     </div>
 
-    <div id="globalnav"><ul>
+    <div id="logo">Calvary Lutheran School</div>
+
+    <div id="globalnav" class="{{ page|lower }}"><ul>
     {% for link in links %}
-      <li id="nav_{{ link.name|lower }}" class="{% if forloop.first %}first {% endif %}{% if forloop.last %}last {% endif %}{% ifequal link.url page %}active {% endifequal %}>">
-        <a href="{{ link.url }}">{{ link.name|upper }}</a>
-      </li>
+      <li id="gn-{{ link.name|lower }}"><a href="{{ link.url }}">{{ link.name|upper }}</a></li>
     {% endfor %}
     </ul></div>
 
