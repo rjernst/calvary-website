@@ -12,6 +12,25 @@
 
 <!-- jcarousel -->
 <script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+<script type="text/javascript">
+  function nav(){
+    $('div#globalnav ul li').mouseover(function() {
+      $(this).find('ul:first').slideDown();
+    });
+
+    $('div#globalnav ul li').mouseleave(function() {
+      $('div#globalnav ul li ul').slideUp();
+    });
+
+    $('div#globalnav ul li ul').mouseleave(function() {
+      $('div#globalnav ul li ul').slideUp();
+    });
+  };
+
+  $(document).ready(function() {
+    nav();
+  });
+</script>
 <link rel="stylesheet" type="text/css" href="/css/jcarousel.css" />
 
 {% block head %}{% endblock %}
@@ -34,23 +53,32 @@ links - The links for this site
 
   <div id="header">
 
-    <span id="login">Need to sign into the website? <a href="/auth/login">Login here</a></span>
+    <span id="login">Need to sign into the website? <a href="/_ah/login_required">Login here</a></span>
 
     <span id="cross_site">
+      <a id="twitter_page" href="http://twitter.com/CalvarySLZ"><img src="/media/twitter-icon.png"/></a>
+      <a id="facebook_page" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/media/facebook-icon.png"/></a> 
+      <p>
       {% ifequal site "school" %}
         <a href="/church">Visit Church website</a>
       {% else %}
         <a href="/school">Visit School website</a>
       {% endifequal %} 
-      | <a id="facebook_page" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/media/facebook-icon.png"/></a> 
-        <a id="twitter_page" href="http://twitter.com/CalvarySLZ"><img src="/media/twitter-icon.png"/></a>
+      </p>
     </span>
 
     <div id="logo">Calvary Lutheran School</div>
 
     <div id="globalnav" class="{{ page|lower }}"><ul>
     {% for link in links %}
-      <li id="gn-{{ link.name|lower }}"><a href="{{ link.url }}">{{ link.name|upper }}</a></li>
+      <li id="gn-{{ link.name|lower }}" class="{% if forloop.first %}first{% endif %}">
+        <a href="{{ link.url }}">{{ link.name|upper }}</a>
+        <ul class="submenu">
+          <li><a href="#">sub item 1</a></li>
+          <li><a href="#">sub item 2</a></li>
+          <li><a href="#">sub item 3</a></li>
+        </ul>
+      </li>
     {% endfor %}
     </ul></div>
 
