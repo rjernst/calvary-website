@@ -5,10 +5,10 @@ api_version: 1
 
 handlers:
 - url: /_ah/login_required
-  script: auth/openid.py
+  script: util/auth/openid.py
 
 - url: /openid
-  static_dir: auth/resources
+  static_dir: util/auth/resources
 
 - url: /robots.txt
   static_files: robots.txt
@@ -20,7 +20,6 @@ handlers:
 
 - url: /school.*
   script: school/urls.py
-  login: required
 
 - url: /church.*
   script: church/urls.py

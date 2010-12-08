@@ -6,6 +6,7 @@
 
 <title>Calvary Lutheran {{ site|capfirst }} - {% block title %}Template{% endblock %}</title>
 
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css" />
 
 <script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
@@ -53,11 +54,16 @@ links - The links for this site
 
   <div id="header">
 
-    <span id="login">Need to sign into the website? <a href="/_ah/login_required">Login here</a></span>
+    <span id="login">
+    {% if user %}
+      {{ user }}, <a href="{{ logout }}">Logout</a>
+    {% else %}
+      Need to sign into the website? <a href="/_ah/login_required">Login here</a></span>
+    {% endif %}
 
     <span id="cross_site">
-      <a id="twitter_page" href="http://twitter.com/CalvarySLZ"><img src="/media/twitter-icon.png"/></a>
-      <a id="facebook_page" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/media/facebook-icon.png"/></a> 
+      <a id="twitter_page" target="_blank" href="http://twitter.com/CalvarySLZ"><img src="/media/twitter-icon.png"/></a>
+      <a id="facebook_page" target="_blank" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/media/facebook-icon.png"/></a> 
       <p>
       {% ifequal site "school" %}
         <a href="/church">Visit Church website</a>
@@ -67,7 +73,7 @@ links - The links for this site
       </p>
     </span>
 
-    <div id="logo">Calvary Lutheran School</div>
+    <div id="logo"><p style="font-size:30px;padding:25px 15px;">Calvary Lutheran School<p></div>
 
     <div id="globalnav" class="{{ page|lower }}"><ul>
     {% for link in links %}

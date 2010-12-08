@@ -1,27 +1,23 @@
 
-/* reset */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-  border:0 none;
-  font-family:inherit;
-  font-size:14px;
-  font-style:inherit;
-  font-weight:inherit;
-  margin:0;
-  outline:0 none;
-  padding:0;
-  vertical-align:center;
+a { 
+  font-weight:bold; 
+  text-decoration: none; 
 }
-
-a { font-weight:bold; }
-a:link { text-decoration: none; color:white; }
-a:visited { text-decoration: none; color:white;}
-a:hover { text-decoration: none; color:white;}
-a:active { text-decoration: none; color:white;}
 
 body {
-  font: 62.5%/1em "Lucida Grande",Lucida,Verdana,sans-serif;
+  font-family:Verdana;
+  font-size:14px;
   background-color: #FCF2E4;
 }
+
+h1 { font-size: 250%; }
+h2 { font-size: 200%; }
+h3 { font-size: 150%; }
+h4 { font-weight: bold; }
+h1, h2, h3, h4 {
+  margin: 5px 0px;
+}
+
 
 #wrap {
   width: 900px;
@@ -58,6 +54,9 @@ body {
   right: 0px;
   font-size: 11px;
 }
+#header a {
+  color: white;
+}
 
 /***************************
  * cross site nav
@@ -66,7 +65,7 @@ body {
   float: right;
   background-color: #630b08;
   padding: 10px;
-  width: 225px;
+  width: 250px;
   height: 25px;
   line-height: 25px;
   -moz-border-radius: 0px 0px 10px 10px;
@@ -82,7 +81,7 @@ body {
   border-right-style: dotted;
   border-right-color: gray;
   border-right-width: 2px;
-  padding-right: 10px;
+  padding: 0px 10px;
 }
 
 #content {
@@ -129,7 +128,7 @@ background: -moz-linear-gradient(
     rgb(64,5,5) 10%,
     rgb(99,11,8) 58%
 );
-  padding:0 10px;
+  /*padding:0 10px;*/
   -moz-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -185,7 +184,7 @@ background: -moz-linear-gradient(
 
 .submenu {
   position: absolute;
-  width: 125px;
+  width: 125px; 
   background: #FFF;
   padding: 10px;
   border: solid 1px #2E4B88;
@@ -195,4 +194,13 @@ background: -moz-linear-gradient(
   z-index: 1000;
 }
 
+
+.left_bar {
+  float: left;
+  width: 250px;
+}
+
+.clear {
+  clear: both;
+}
 

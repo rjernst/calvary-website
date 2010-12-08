@@ -1,0 +1,64 @@
+{% extends "school.html" %}
+
+{% block title %}Faculty{% endblock %}
+
+{% block head %}
+<style type="text/css">
+.detail_page {
+  padding: 25px;
+  float: right;
+  width: 500px;
+}
+
+.left_bar {
+  width: 300px;
+  padding: 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid #CCCCCC;
+  background-color: #F8EDF2;
+}
+
+.left_bar img {
+  margin-left: 25px;
+  margin-top: 25px;
+}
+  
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="profile">
+<div class="detail_page">
+  <h2>Christina Grace</h2>
+  <h3>Bio</h3>
+  <p>Christina attended Concordia University, Irvine and graduated in 2006 with a degree in liberal studies with a concentration in child development and with a Lutheran Teaching Certification. In January 2008 she completed her credential work and received a teaching certificate from the state of California with CLAD certification. In addition to teaching, Christina runs the Jr. High youth group. In her spare time, Christina likes to spoil her two kittens, play handbells, read, watch old tv shows, play sports, and spend time outdoors.</p>
+  <h3>Favorite Books</h3>
+  <ul>
+    <li>Harry Potter</li>
+    <li>Euclid</li>
+    <li>Animal Farm</li>
+    <li>Of Mice and Men</li>
+  </ul>
+  <h3>Favorite Subjects</h3>
+  <ul>
+    <li>Art</li>
+    <li>History</li>
+  </ul>
+</div>
+
+<div class="left_bar">
+  <img alt="Christina Grace picture" src="/media/cgrace.jpg"/>
+  <p><a href="mailto:cgrace@calvaryslz.org">cgrace@calvaryslz.org</a></p>
+  <p><a href="/school/classes/1st">1st Grade Teacher</a></p>
+  <ul class="education_info">
+    <li>B.A. Liberal Studies, Concordia University, Irvine</li>
+    <li>Teacher Credential Program, Concordia University, Irvine</li>
+  </ul>
+</div>
+
+<div class="clear"></div>
+</div>
+
+{% endblock %}
+
