@@ -1,5 +1,5 @@
 //jQuery OpenID Plugin 1.1 Copyright 2009 Jarrett Vance http://jvance.com/pages/jQueryOpenIdPlugin.xhtml
-$.fn.openid = function() {
+$.fn.login = function() {
   var $this = $(this);
   var $usr = $this.find('input[name=openid_username]');
   var $id = $this.find('input[name=openid_url]');
@@ -24,6 +24,20 @@ $.fn.openid = function() {
     }
     return true;
 
+  };
+  var facebook = function() {
+    var $li = $(this);
+    $li.parent().find('li').removeClass('highlight');
+    $li.addClass('highlight');
+    $usrfs.fadeOut();
+    $idfs.fadeOut();
+    var $next = $('login.next').value;
+    FB.login(function(response) {
+        if (response.session) {
+            window.location = $next;
+        }
+    }, {perms:'email'});
+    return false;
   };
   var direct = function() {
     var $li = $(this);
@@ -64,6 +78,7 @@ $.fn.openid = function() {
     return false;
   };
 
+  $this.find('li.facebook').click(facebook);
   $this.find('li.direct').click(direct);
   $this.find('li.openid').click(openid);
   $this.find('li.username').click(username);

@@ -1,0 +1,11 @@
+
+handlers:
+- url: /auth/account.*
+  script: auth/account.py
+
+- url: /auth/login
+  script: auth/login.py
+
+- url: /auth/
+  static_dir: auth/resources
+

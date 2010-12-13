@@ -3,13 +3,10 @@ version: 1
 runtime: python
 api_version: 1
 
+includes:
+- auth/urls.yaml
+
 handlers:
-- url: /_ah/login_required
-  script: util/auth/openid.py
-
-- url: /openid
-  static_dir: util/auth/resources
-
 - url: /robots.txt
   static_files: robots.txt
   upload: robots.txt

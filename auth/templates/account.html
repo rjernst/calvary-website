@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<body>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript">
+
+function logout() {
+  FB.logout(function(response) {
+    window.location.reload();
+  });
+};
+</script>
+
+<p>Hello, {{ name }}!</p>
+<p><b>Provider:</b> {{ provider }}</p>
+<p><b>Email:</b> {{ email }}</p>
+<p><b>UID:</b> {{ uid }}</p>
+
+<br/><br/>
+
+{{ logout }}
+<div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({appId: '183464395004093', status: true, cookie: true,
+                 xfbml: true});
+      };
+      (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol +
+          '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+      }());
+    </script>
+
+
+</body>
+</html>

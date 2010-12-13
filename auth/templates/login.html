@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+<title>Login</title>
+<link rel="stylesheet" type="text/css" media="screen" href="/auth/login.css" />
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
+
+</head>
+
+<body>
+<form class="login" method="post" action="/auth/login"> 
+  <input type="hidden" id="login.next" name="next" value="{{ next }}"/>
+  <div><ul>
+    <li class="openid" title="OpenID">
+      <img alt="icon" src="/auth/openid.png" />
+      <span><strong>http://{your-openid-url}</strong></span>
+    </li>
+    <li class="facebook" title="Facebook">
+      <img alt="icon" src="/auth/facebook.png" />
+    </li>
+    <li class="direct" title="Google">
+      <img alt="icon" src="/auth/google.png" />
+      <span>www.google.com/accounts/o8/id</span>
+    </li>
+    <li class="direct" title="Yahoo">
+      <img alt="icon" src="/auth/yahoo.png" />
+      <span>yahoo.com</span>
+    </li>
+    <li class="direct" title="AOL screen name">
+      <img alt="icon" src="/auth/aol.png" />
+      <span>aol.com</strong></span>
+    </li>
+  </ul></div>
+  <fieldset> 
+    <label for="openid_username">Enter your <span>Provider user name</span></label> 
+    <div>
+      <span></span><input type="text" name="openid_username" /><span></span> 
+      <input type="submit" value="Log In" />
+    </div> 
+  </fieldset> 
+  <fieldset> 
+    <label for="openid_identifier">Enter your <a class="openid_logo" href="http://openid.net">OpenID</a></label> 
+    <div>
+      <input type="text" name="openid_url" /> 
+      <input type="submit" value="Log In" />
+    </div> 
+  </fieldset> 
+</form>
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({appId: '{{ fb_key }}', status: true, cookie: true, xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol +
+          '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+  }());
+</script>
+<script type="text/javascript" src="/auth/login.js"></script>
+<script type="text/javascript">
+  $(function() { $("form.login").login(); });
+</script>
+
+</body>
+</html>
