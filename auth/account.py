@@ -24,46 +24,62 @@ class UserInfo(db.Model):
 
 def require_login(method):
   def call(handler):
-    user_key = get_user_key(handler.request)
-    if not user_key:
+    user = get_current_user(handler.request)
+    if not user:
       logging.info("No user!!")
       handler.redirect('/auth/login')
     else:
-      return method(handler)
+      method(handler)
   return call
 
-def get_user_key(request):
+def get_current_user(request):
   # TODO: need to store user in session
+  pass
+
+def find_user_key(request):
   guser = users.get_current_user()
   key = None
+  provider = None
   if guser is not None:
     logging.info("federated login found")
     # logged in through federated login
-    key = guser.federated_identity()
+    key = guser.federated_identity() or 'TEST_ID' # TEST is for dev server
+    provider = guser.federated_provider() or 'TEST_PROVIDER'
   elif FB_API.find_session(request):
     logging.info("facebook login found")
     # logged in through facebook
     # TODO: FB_API should not contain per session info
     key = 'fb_%s' % FB_API.uid
-  return key
+    provider = 'facebook.connect'
+  return (key, provider)
+
+def get_logout_url(request, user):
+  if user.provider == 'facebook.connect':
+    return 'javascript:FB.logout(function(response) { window.location.reload(); })'
+  else:
+    return users.create_logout_url(request.url)
 
 class View(webapp.RequestHandler):
 
-  @require_login
   def get(self):
-    user_key = get_user_key(self.request)
+    (user_key, provider) = find_user_key(self.request)
+    if user_key is None:
+      self.redirect('/auth/login?next=/auth/account')
+      return
+
     user = UserInfo.get_by_key_name(user_key)
     if user is None:
-      self.redirect('/auth/account/create')
-    else:
-      vars = {
-        'name': user.name,
-        'email': user.email,
-        'uid': user.key().name(),
-      }
+      self.redirect('/auth/account/create?next=/auth/account')
+      return
 
-      # TODO: add logout link
-      tpl(self, 'account.html', vars)
+    vars = {
+      'name': user.name,
+      'email': user.email,
+      'provider': user.provider,
+      'uid': user.key().name(),
+      'logout': get_logout_url(self.request, user)
+    }
+    tpl(self, 'account.html', vars)
       
 
 # TODO: move this somewhere else
@@ -73,29 +89,42 @@ def check_form(handler, args):
   for arg in args:
     val = handler.request.get(arg)
     if val is None:
-      handler.redirect(handler.url)
+      handler.redirect(handler.request.url)
+      return None
     vals.append(val)
   return vals
 
 class Create(webapp.RequestHandler):
   
-  @require_login
   def get(self):
-    tpl(self, 'create.html')
-    
-  @require_login
-  def post(self):
-    user_key = get_user_key(self.request)
+    (user_key, provider) = find_user_key(self.request)
+    if user_key is None:
+      self.redirect('/auth/login?next=/auth/account/create')
+      return
+
     user = UserInfo.get_by_key_name(user_key)
     if user:
-      raise Exception("user %s already exists" % user_key) 
+      self.redirect('/auth/account')
+      return
+
+    tpl(self, 'create.html')
+    
+  def post(self):
+    (user_key, provider) = find_user_key(self.request)
+    user = UserInfo.get_by_key_name(user_key)
+    if user:
+      self.redirect('/auth/account')
+      return
 
     vals = check_form(self, ['name', 'email'])
+    if not vals:
+      return
 
-    user = UserInfo(key_name=user_key, name=vals[0], email=vals[1])
+    user = UserInfo(key_name=user_key, provider=provider, name=vals[0], email=vals[1])
     user.put()
     self.redirect('/auth/account')
 
+# TODO: move this to common file
 def tpl(handler, tpl_file, vars = {}):
   vars['fb_key'] = FB_KEY
   path = os.path.join(os.path.dirname(__file__), 'templates/' + tpl_file)

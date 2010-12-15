@@ -31,7 +31,8 @@ $.fn.login = function() {
     $li.addClass('highlight');
     $usrfs.fadeOut();
     $idfs.fadeOut();
-    var $next = $('login.next').value;
+    var $next = document.getElementById('login_next').value;
+    alert('Next = ' + $next);
     FB.login(function(response) {
         if (response.session) {
             window.location = $next;
