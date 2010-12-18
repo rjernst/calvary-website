@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 
-import wsgiref.handlers
-from google.appengine.ext import webapp
-import logging
-
 from google.appengine.ext import db, webapp
-from google.appengine.api import users
-from django.utils import simplejson as json
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.api import memcache
+
+import logging
+import common
+
+from common.render import user_tpl
+from auth.account import require_login
+from school import tpl
 
 class Faculty(db.Model):
     name = db.StringProperty()
@@ -19,14 +22,13 @@ class Faculty(db.Model):
 class FacultyHandler(webapp.RequestHandler):
 
     def get(self):
-        pass
+        data = memcache.get('school')
+        if data is None or common.debug:
+            data = tpl('faculty.html')
+            memcache.set('school', data)
+        user_tpl(self, data)
         
 
-def main():
-  app = webapp.WSGIApplication(('.*', FacultyHandler), debug=True)
-  wsgiref.handlers.CGIHandler().run(app)
-
-if __name__ == '__main__':
-  main()
-
-
+app = webapp.WSGIApplication([('.*', FacultyHandler),], debug=common.debug)
+def main(): run_wsgi_app(app)
+if __name__ == "__main__": main()

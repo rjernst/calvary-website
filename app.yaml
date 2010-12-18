@@ -5,31 +5,17 @@ api_version: 1
 
 includes:
 - auth/urls.yaml
+- church/urls.yaml
+- school/urls.yaml
+- plugins/urls.yaml
 
 handlers:
 - url: /robots.txt
   static_files: robots.txt
   upload: robots.txt
 
-- url: /blog-test
-  static_files: templates/blog.html
-  upload: templates/blog.html
+- url: /resources/
+  static_dir: common/resources
+  #expiration: "1h"
 
-- url: /school.*
-  script: school/urls.py
-
-- url: /church.*
-  script: church/urls.py
-
-- url: /data/.*
-  script: plugins/urls.py
-
-- url: /css
-  static_dir: stylesheets
-
-- url: /js
-  static_dir: javascript
-
-- url: /media
-  static_dir: media
 

@@ -1,0 +1,10 @@
+
+handlers:
+- url: /church/resources
+  static_dir: church/resources
+
+- url: /church
+  script: church/main.py
+
+- url: /church/.*
+  script: church/stub.py

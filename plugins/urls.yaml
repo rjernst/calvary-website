@@ -1,0 +1,9 @@
+
+handlers:
+- url: /blog-test
+  static_files: templates/blog.html
+  upload: templates/blog.html
+
+- url: /data/blog.*
+  script: plugins/blog.py
+

@@ -1,0 +1,74 @@
+{% extends "../../common/templates/base.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/school/resources/base.css" />
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+    });
+  });
+</script>
+{% endblock %}
+
+{% block cross_link %}<a href="/church">Visit Church website</a>{% endblock %}
+
+{% block links %}
+    <li id="gn-school" class="first">
+      <a href="/school">School</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+    <li id="gn-about">
+      <a href="/school/about">About</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+    <li id="gn-admissions">
+      <a href="/school/admissions">Admission</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+    <li id="gn-classes">
+      <a href="/school/classes">Classes</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+    <li id="gn-faculty">
+      <a href="/school/faculty">Faculty</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+    <li id="gn-programs">
+      <a href="/school/programs">Programs</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+    <li id="gn-parents">
+      <a href="/school/parents">Parents</a>
+      <ul class="submenu">
+        <li><a href="#">sub item 1</a></li>
+        <li><a href="#">sub item 2</a></li>
+        <li><a href="#">sub item 3</a></li>
+      </ul>
+    </li>
+{% endblock %}
+
+

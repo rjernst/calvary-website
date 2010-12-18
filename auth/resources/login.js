@@ -98,3 +98,17 @@ $.fn.login = function() {
   $this.find('li:eq(0)').click();
   return this;
 };
+
+function openPopupWindow(openid) {
+    //document.getElementById('ids').style.display = 'none';
+    //document.getElementById('message').innerHTML = 'Signing you in <img src="/media/spinner.gif"/>';
+    var next = document.getElementById('login_next').value;
+    var w = window.open('/auth/login2?openid_url='+encodeURIComponent(openid)+'&next='+encodeURIComponent(next), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
+
+    var coords = getCenteredCoords(450,500);
+    w.moveTo(coords[0],coords[1]); 
+}
+
+function finishLogin(url) {
+    document.location = url;
+}

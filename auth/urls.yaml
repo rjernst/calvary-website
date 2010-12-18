@@ -6,6 +6,12 @@ handlers:
 - url: /auth/login
   script: auth/login.py
 
+- url: /auth/login2
+  script: auth/login.py
+
+- url: /auth/login3
+  script: auth/login.py
+
 - url: /auth/
   static_dir: auth/resources
 

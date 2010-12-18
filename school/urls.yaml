@@ -1,0 +1,15 @@
+
+handlers:
+- url: /school/resources
+  static_dir: school/resources
+
+- url: /school
+  script: school/main.py
+
+- url: /school/faculty.*
+  script: school/faculty.py
+
+- url: /school/.*
+  script: school/stub.py
+
+

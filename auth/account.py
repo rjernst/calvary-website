@@ -4,10 +4,11 @@ import logging
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-from auth import facebook
+from auth import facebook, tpl
 from google.appengine.ext import db, webapp
 from google.appengine.api import users
 from django.utils import simplejson as json
+from auth.sessions import get_current_session
 
 from google.appengine.api import users
 
@@ -21,20 +22,31 @@ class UserInfo(db.Model):
   name = db.StringProperty()
   email = db.EmailProperty()
   groups = db.ListProperty(int)
+  admin = db.BooleanProperty(default=False)
 
 def require_login(method):
   def call(handler):
     user = get_current_user(handler.request)
     if not user:
       logging.info("No user!!")
-      handler.redirect('/auth/login')
+      # TODO: next should be able to have query parameters
+      handler.redirect('/auth/login?next=%s' % handler.request.path)
     else:
       method(handler)
   return call
 
 def get_current_user(request):
-  # TODO: need to store user in session
-  pass
+  session = get_current_session() 
+  if session.has_key('user'):
+    return session['user']
+  else:
+    (user_key, provider) = find_user_key(request)
+    if user_key is not None:
+      user = UserInfo.get_by_key_name(user_key)
+      session.set_quick('user', user)
+      return user
+   
+  return None
 
 def find_user_key(request):
   guser = users.get_current_user()
@@ -51,6 +63,12 @@ def find_user_key(request):
     # TODO: FB_API should not contain per session info
     key = 'fb_%s' % FB_API.uid
     provider = 'facebook.connect'
+  session = get_current_session()
+  if session.has_key('counter'):
+    session['counter'] += 1
+  else:
+    session['counter'] = 1
+  logging.info("Counter = %d", session['counter'])
   return (key, provider)
 
 def get_logout_url(request, user):
@@ -77,7 +95,8 @@ class View(webapp.RequestHandler):
       'email': user.email,
       'provider': user.provider,
       'uid': user.key().name(),
-      'logout': get_logout_url(self.request, user)
+      'logout': get_logout_url(self.request, user),
+      'fb_key': FB_KEY,
     }
     tpl(self, 'account.html', vars)
       
@@ -123,12 +142,6 @@ class Create(webapp.RequestHandler):
     user = UserInfo(key_name=user_key, provider=provider, name=vals[0], email=vals[1])
     user.put()
     self.redirect('/auth/account')
-
-# TODO: move this to common file
-def tpl(handler, tpl_file, vars = {}):
-  vars['fb_key'] = FB_KEY
-  path = os.path.join(os.path.dirname(__file__), 'templates/' + tpl_file)
-  handler.response.out.write(template.render(path, vars))
 
 application = webapp.WSGIApplication([
     ('/auth/account/create', Create),

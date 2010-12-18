@@ -7,12 +7,12 @@
 <title>Calvary Lutheran {{ site|capfirst }} - {% block title %}Template{% endblock %}</title>
 
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/resources/base.css" />
 
-<script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="/resources/jquery-1.4.2.js"></script>
 
 <!-- jcarousel -->
-<script type="text/javascript" src="/js/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="/resources/jquery.jcarousel.js"></script>
 <script type="text/javascript">
   function nav(){
     $('div#globalnav ul li').mouseover(function() {
@@ -32,20 +32,13 @@
     nav();
   });
 </script>
-<link rel="stylesheet" type="text/css" href="/css/jcarousel.css" />
+<link rel="stylesheet" type="text/css" href="/resources/jcarousel.css" />
 
 {% block head %}{% endblock %}
 
 </head>
 
-<!--
-Generated at {% now "jS F Y H:i" %}
-
-Template takes the following args:
-site - {{ site }}
-page - {{ page }}
-links - The links for this site
--->
+<!-- Generated at {% now "jS F Y H:i" %} -->
 
 <body>
 <div id="login_bg"></div>
@@ -55,38 +48,24 @@ links - The links for this site
   <div id="header">
 
     <span id="login">
+{% raw %}
     {% if user %}
-      {{ user }}, <a href="{{ logout }}">Logout</a>
+      {{ user.name }}, <a href="{{ logout }}">Logout</a>
     {% else %}
-      Need to sign into the website? <a href="/_ah/login_required">Login here</a></span>
+      Need to sign into the website? <a href="/auth/login">Login here</a></span>
     {% endif %}
+{% endraw %}
 
     <span id="cross_site">
-      <a id="twitter_page" target="_blank" href="http://twitter.com/CalvarySLZ"><img src="/media/twitter-icon.png"/></a>
-      <a id="facebook_page" target="_blank" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/media/facebook-icon.png"/></a> 
-      <p>
-      {% ifequal site "school" %}
-        <a href="/church">Visit Church website</a>
-      {% else %}
-        <a href="/school">Visit School website</a>
-      {% endifequal %} 
-      </p>
+      <a id="twitter_page" target="_blank" href="http://twitter.com/CalvarySLZ"><img src="/resources/twitter-icon.png"/></a>
+      <a id="facebook_page" target="_blank" href="http://www.facebook.com/pages/San-Lorenzo-CA/Calvary-Lutheran-School-San-Lorenzo-CA/109024745816377?ref=ts"><img src="/resources/facebook-icon.png"/></a> 
+      <p> {% block cross_link %}{% endblock %} </p>
     </span>
 
     <div id="logo"><p style="font-size:30px;padding:25px 15px;">Calvary Lutheran School<p></div>
 
-    <div id="globalnav" class="{{ page|lower }}"><ul>
-    {% for link in links %}
-      <li id="gn-{{ link.name|lower }}" class="{% if forloop.first %}first{% endif %}">
-        <a href="{{ link.url }}">{{ link.name|upper }}</a>
-        <ul class="submenu">
-          <li><a href="#">sub item 1</a></li>
-          <li><a href="#">sub item 2</a></li>
-          <li><a href="#">sub item 3</a></li>
-        </ul>
-      </li>
-    {% endfor %}
-    </ul></div>
+    <div id="globalnav"><ul>{% block links %}{% endblock %}</ul></div>
+      
 
   </div><!-- header -->
 
@@ -106,7 +85,7 @@ links - The links for this site
 
   <table id="powered_by"><tr>
     <td><img src="http://code.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" id="gae_logo" /></td>
-    <td><img src="/media/fish.png" id="fish_logo" /></td>
+    <td><img src="/resources/fish.png" id="fish_logo" /></td>
   </tr></table>
 
 </div>

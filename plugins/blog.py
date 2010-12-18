@@ -245,4 +245,9 @@ class TagsHandler(webapp.RequestHandler):
         j = json.dumps(dict([(t.key().name(), t.count) for t in tags]))
         self.response.out.write(j)
 
-
+app = webapp.WSGIApplication([
+    ('/data/blog/articles', ArticlesHandler)
+    ('/data/blog/tags', TagsHandler)
+], debug=True)
+def main(): run_wsgi_app(app)
+if __name__ == '__main__': main()
